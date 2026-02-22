@@ -1,0 +1,8 @@
+0 donuts
+1 french_fries
+2 hamburger
+3 hot_dog
+4 ice_cream
+5 0melette
+6 pizza
+7 samosa

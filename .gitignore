@@ -1,0 +1,35 @@
+# Virtual environment
+venv/
+.venv/
+
+# Environment variables (API keys)
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Training data (too large for Git)
+dataset/
+yolo_dataset_training/
+tm_training_data/
+
+# Temporary files
+temp_upload.jpg
+*.tmp
+write_test.txt
+debug_results.txt
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Database (will be recreated on deploy)
+database.db
+nutrition.db
+calorie_model.pkl

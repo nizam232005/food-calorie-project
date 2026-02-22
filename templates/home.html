@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}NutriSmart - AI Food Tracker{% endblock %}
+
+{% block content %}
+<section class="container" style="padding: 100px 20px; text-align: center;">
+    <div class="animate-fade-in" style="max-width: 800px; margin: 0 auto;">
+        <h1 style="margin-bottom: 20px;">Master Your Nutrition with <span class="gradient-text">AI Precision</span></h1>
+        <p style="font-size: 1.25rem; color: var(--text-muted); margin-bottom: 40px;">
+            Harness the power of YOLOv8 and Clarifai to track your food instantly.
+            No more manual entry. Just snap, analyze, and achieve your goals.
+        </p>
+        <div style="display: flex; gap: 20px; justify-content: center;">
+            <a href="/register" class="btn btn-primary" style="padding: 16px 32px; font-size: 1.1rem;">Get Started
+                Free</a>
+            <a href="/login" class="btn btn-outline" style="padding: 16px 32px; font-size: 1.1rem;">Welcome Back</a>
+        </div>
+    </div>
+</section>
+
+<section class="container" style="padding: 50px 20px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+        <div class="glass-card">
+            <span style="font-size: 2.5rem; margin-bottom: 20px; display: block;">📸</span>
+            <h3>Snap & Recognize</h3>
+            <p style="color: var(--text-muted); margin-top: 10px;">Our hybrid AI detects multiple food items in a single
+                image with surgical accuracy.</p>
+        </div>
+        <div class="glass-card">
+            <span style="font-size: 2.5rem; margin-bottom: 20px; display: block;">📊</span>
+            <h3>Macros At A Glance</h3>
+            <p style="color: var(--text-muted); margin-top: 10px;">Visualize your protein, carbs, and fats with premium
+                progress rings and charts.</p>
+        </div>
+        <div class="glass-card">
+            <span style="font-size: 2.5rem; margin-bottom: 20px; display: block;">🎯</span>
+            <h3>Personalized Goals</h3>
+            <p style="color: var(--text-muted); margin-top: 10px;">Daily calorie predictions tailored to your activity
+                level, age, and fitness goals.</p>
+        </div>
+    </div>
+</section>
+
+<section class="container" style="padding: 100px 20px; text-align: center;">
+    <div class="glass"
+        style="padding: 60px; border-radius: 40px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);">
+        <h2>Ready to transform your health?</h2>
+        <p style="margin-bottom: 30px; color: var(--text-muted);">Join thousands of users tracking their way to a better
+            self.</p>
+        <a href="/register" class="btn btn-primary" style="padding: 16px 40px;">Create Your Account</a>
+    </div>
+</section>
+{% endblock %}

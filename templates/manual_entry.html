@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Manual Entry - NutriSmart{% endblock %}
+
+{% block content %}
+<section class="container"
+    style="padding: 60px 20px; display: flex; justify-content: center; align-items: center; min-height: 70vh;">
+    <div class="glass animate-fade-in" style="width: 100%; max-width: 500px; padding: 50px;">
+        <h2 style="text-align: center; margin-bottom: 10px;">✍️ Manual Entry</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 40px;">Record a meal without a photo</p>
+
+        <form action="/log_calories" method="post">
+            <div class="form-group">
+                <label for="food_name">What are you eating?</label>
+                <input type="text" id="food_name" name="food_name" placeholder="e.g. Avocado Toast" required>
+            </div>
+
+            <div class="form-group">
+                <label for="calories">Calories (Optional)</label>
+                <input type="number" id="calories" name="calories" placeholder="e.g. 350" step="0.1">
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 8px;">Leave empty and our AI will
+                    estimate based on the name.</p>
+            </div>
+
+            <div class="form-group">
+                <label for="portion_size">How big is the portion?</label>
+                <select name="portion_size" id="portion_size">
+                    <option value="0.5">Small (0.5x)</option>
+                    <option value="1.0" selected>Standard (1x)</option>
+                    <option value="1.5">Large (1.5x)</option>
+                    <option value="2.0">Extra Large (2x)</option>
+                    <option value="3.0">3 servings</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="date">When did you eat it?</label>
+                <input type="date" id="date" name="date" value="{{ today_date }}">
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px; padding: 16px;">✅ Log
+                Consumption</button>
+        </form>
+
+        <a href="/dashboard"
+            style="display: block; text-align: center; margin-top: 25px; color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">←
+            Cancel and Back</a>
+    </div>
+</section>
+{% endblock %}

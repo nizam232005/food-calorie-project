@@ -1,0 +1,32 @@
+# YOLOv8 Food Detection Dataset Configuration (Updated for User Dataset)
+
+# Absolute path to the dataset folder
+path: C:/food_calorie_project/yolo_dataset_training
+
+# Relative paths from the 'path' above
+train: train/images
+val: valid/images
+test: test/images
+
+# Classes (from downloaded data.yaml)
+names:
+  0: Aguacate
+  1: Ahuyama
+  2: Arepa
+  3: Arroz
+  4: Arroz con Pollo
+  5: Carne res
+  6: Chicharron
+  7: Chorizo
+  8: Criolla
+  9: Ensalada
+  10: Frijol
+  11: Habichuela
+  12: Huevo
+  13: Lentejas
+  14: Morcilla
+  15: Papa
+  16: Platano
+  17: Pollo
+  18: QR
+  19: Trucha

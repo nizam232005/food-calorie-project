@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Food Calorie Tracker{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    <nav class="glass"
+        style="margin: 20px; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 20px; z-index: 1000;">
+        <a href="/" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 1.5rem;">🥗</span>
+            <span
+                style="font-weight: 800; font-size: 1.2rem; background: linear-gradient(90deg, #10b981, #3b82f6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">NUTRISMART</span>
+        </a>
+        <div style="display: flex; gap: 20px; align-items: center;">
+            {% if session.get('user_id') %}
+            <a href="/dashboard" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.9rem;">Dashboard</a>
+            <a href="/logout" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.9rem;">Logout</a>
+            {% else %}
+            <a href="/login" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.9rem;">Login</a>
+            <a href="/register" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.9rem;">Start Free</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer
+        style="margin-top: 100px; padding: 50px 0; border-top: 1px solid var(--glass-border); text-align: center; color: var(--text-muted);">
+        <p>&copy; 2026 NutriSmart AI. Powered by Clarifai & YOLOv8.</p>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>

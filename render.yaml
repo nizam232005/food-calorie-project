@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: nutrismart-food-calorie
+    runtime: docker
+    plan: free
+    envVars:
+      - key: USDA_API_KEY
+        sync: false
+      - key: LOGMEAL_API_KEY
+        sync: false
+      - key: FOOD_RECOGNITION_API
+        value: clarifai
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: PORT
+        value: 10000

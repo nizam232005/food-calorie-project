@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}Meal Detected - NutriSmart{% endblock %}
+
+{% block content %}
+<section class="container" style="padding: 60px 20px;">
+    <div style="text-align: center; margin-bottom: 50px;">
+        <h1 style="font-size: 2.5rem;">Plate <span class="gradient-text">Analyzed</span></h1>
+        <p style="color: var(--text-muted);">Here's what our AI found in your meal.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+        <!-- Summary Card -->
+        <div class="glass-card animate-fade-in"
+            style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);">
+            <h2>Total Nutrition</h2>
+            <div style="margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="glass" style="padding: 25px; text-align: center; grid-column: 1 / -1;">
+                    <div style="font-size: 3rem; font-weight: 800; color: var(--primary);">{{ total_calories }}</div>
+                    <div
+                        style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
+                        Calories (kcal)</div>
+                </div>
+                <div class="glass" style="padding: 20px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 700;">{{ total_protein }}g</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">Protein</div>
+                </div>
+                <div class="glass" style="padding: 20px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 700;">{{ total_carbs }}g</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">Carbs</div>
+                </div>
+                <!-- Fat moved to grid for symmetry if needed -->
+                <div class="glass" style="padding: 20px; text-align: center; grid-column: 1 / -1;">
+                    <div style="font-size: 1.5rem; font-weight: 700;">{{ total_fat }}g</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">Fat Content</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <a href="/dashboard" class="btn btn-primary" style="width: 100%; padding: 18px;">Confirm and Back</a>
+            </div>
+        </div>
+
+        <!-- Detected Items List -->
+        <div>
+            <h2 style="margin-bottom: 20px;">Detailed Breakdown</h2>
+            {% for item in results %}
+            <div class="glass-card animate-fade-in"
+                style="margin-bottom: 20px; padding: 25px; border-left: 4px solid var(--primary);">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <h3 style="text-transform: capitalize; margin-bottom: 5px;">{{ item.food }}</h3>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            {% if item.confidence >= 80 %}
+                            <span
+                                style="font-size: 0.75rem; background: var(--success); color: white; padding: 2px 8px; border-radius: 20px;">High
+                                Confidence</span>
+                            {% elif item.confidence >= 50 %}
+                            <span
+                                style="font-size: 0.75rem; background: var(--warning); color: white; padding: 2px 8px; border-radius: 20px;">Medium
+                                Confidence</span>
+                            {% else %}
+                            <span
+                                style="font-size: 0.75rem; background: var(--danger); color: white; padding: 2px 8px; border-radius: 20px;">Low
+                                Confidence</span>
+                            {% endif %}
+                            <span style="font-size: 0.8rem; color: var(--text-muted);">{{ item.confidence }}%
+                                accuracy</span>
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-weight: 800; font-size: 1.25rem;">{{ item.nutrition.calories }} kcal</div>
+                        <div style="font-size: 0.85rem; color: var(--text-muted);">{{ item.nutrition.serving_size }}
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 25px; display: flex; gap: 10px;">
+                    <form action="/log_calories" method="post" style="flex: 1;">
+                        <input type="hidden" name="calories" value="{{ item.nutrition.calories }}">
+                        <input type="hidden" name="food_name" value="{{ item.food }}">
+                        <button type="submit" class="btn btn-outline"
+                            style="width: 100%; font-size: 0.85rem; padding: 10px;">Add to Daily Log</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div style="text-align: center; margin-top: 30px;">
+                <p style="color: var(--text-muted); font-size: 0.9rem;">
+                    Something looks wrong?
+                    <a href="/manual_entry"
+                        style="color: var(--primary); font-weight: 600; text-decoration: none;">Correct manually</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

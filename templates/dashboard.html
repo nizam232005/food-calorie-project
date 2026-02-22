@@ -1,0 +1,409 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - NutriSmart{% endblock %}
+
+{% block extra_css %}
+<style>
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    @media (max-width: 992px) {
+        .dashboard-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .progress-ring-container {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        margin: 0 auto 20px;
+    }
+
+    .progress-ring-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .history-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        border-bottom: 1px solid var(--glass-border);
+    }
+
+    .history-item:last-child {
+        border-bottom: none;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px;">
+        <div>
+            <h1 style="font-size: 2.5rem;">Hello, <span class="gradient-text">{{ name }}</span>! 👋</h1>
+            <p style="color: var(--text-muted);">Here's your nutritional overview for today.</p>
+        </div>
+        <a href="/manual_entry" class="btn btn-outline">✍️ Manual Log</a>
+    </div>
+
+    <div class="dashboard-grid">
+        <!-- Daily Progress Section -->
+        <div class="glass-card animate-fade-in" style="display: flex; flex-direction: column; align-items: center;">
+            <h2 style="align-self: flex-start; margin-bottom: 30px;">Daily Progress</h2>
+
+            <div class="progress-ring-container">
+                <canvas id="progressRing" width="200" height="200"></canvas>
+                <div class="progress-ring-text">
+                    <div style="font-size: 2rem; font-weight: 800;">{{ today_consumption|int }}</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">of {{ target_calories|int }} kcal</div>
+                </div>
+            </div>
+
+            <div style="width: 100%; margin-top: 20px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span style="font-size: 0.9rem;">Remaining</span>
+                    <span style="font-weight: 700; color: var(--primary);">{{ (target_calories - today_consumption)|int
+                        }} kcal</span>
+                </div>
+                <div
+                    style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden;">
+                    <div
+                        style="width: {{ [((today_consumption / target_calories * 100)|round|int), 100]|min }}%; height: 100%; background: var(--primary);">
+                    </div>
+                </div>
+            </div>
+
+            <div
+                style="margin-top: 30px; text-align: center; width: 100%; border-top: 1px solid var(--glass-border); padding-top: 20px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 0.85rem;">
+                    <div>
+                        <div style="color: var(--text-muted);">BMR</div>
+                        <div style="font-weight: 600;">{{ prediction.bmr }} kcal</div>
+                    </div>
+                    <div>
+                        <div style="color: var(--text-muted);">Activity</div>
+                        <div style="font-weight: 600;">+{{ prediction.breakdown.activity_bonus }} kcal</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Food Recognition Upload Section -->
+        <div class="glass animate-fade-in"
+            style="padding: 40px; display: flex; flex-direction: column; justify-content: center; border: 2px dashed var(--glass-border);">
+            <div style="text-align: center;">
+                <h2 style="margin-bottom: 20px;">Analyze Your Meal</h2>
+                <p style="color: var(--text-muted); margin-bottom: 40px;">Snap a photo of your food and let NutriSmart
+                    AI do the rest.</p>
+
+                <form action="/predict" method="post" enctype="multipart/form-data">
+                    <div class="form-group" style="margin-bottom: 30px;">
+                        <input type="file" id="image" name="image" accept="image/*" required style="display: none;">
+                        <label for="image" class="btn btn-outline"
+                            style="padding: 40px; border: 2px dashed var(--glass-border); width: 100%; display: flex; flex-direction: column; gap: 15px; cursor: pointer;">
+                            <span style="font-size: 2rem;">📸</span>
+                            <span>Analyze Your Meal</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="portion_size">Portion Size</label>
+                        <select name="portion_size" id="portion_size">
+                            <option value="0.5">Small (0.5x)</option>
+                            <option value="1.0" selected>Standard (1x)</option>
+                            <option value="1.5">Large (1.5x)</option>
+                            <option value="2.0">Extra Large (2x)</option>
+                        </select>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <button type="submit" class="btn btn-primary" style="padding: 15px;">🔍 Analyze</button>
+                        <button type="button" id="scan-label-btn" class="btn btn-outline" style="padding: 15px;">🏷️
+                            Scan Label</button>
+                    </div>
+                    <input type="file" id="ocr-input" accept="image/*" style="display: none;">
+                </form>
+            </div>
+        </div>
+
+        <!-- OCR Results Modal (Hidden by default) -->
+        <div id="ocr-modal"
+            style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
+            <div class="glass-card" style="width: 90%; max-width: 400px; padding: 30px;">
+                <h2 style="margin-bottom: 20px;">Label Scan Results</h2>
+                <form action="/log_calories" method="post">
+                    <div class="form-group">
+                        <label>Food Name</label>
+                        <input type="text" name="food_name" id="ocr-food-name" value="Scanned Product" required>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                        <div>
+                            <label>Calories</label>
+                            <input type="number" name="calories" id="ocr-calories" required>
+                        </div>
+                        <div>
+                            <label>Protein (g)</label>
+                            <input type="number" step="0.1" id="ocr-protein">
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button type="submit" class="btn btn-primary" style="flex: 2;">Save Entry</button>
+                        <button type="button" onclick="document.getElementById('ocr-modal').style.display='none'"
+                            class="btn btn-outline" style="flex: 1;">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Food History -->
+<div class="glass-card animate-fade-in">
+    <h2>Recent History</h2>
+    <div style="margin-top: 20px; max-height: 400px; overflow-y: auto;">
+        {% if recent_history %}
+        {% for item in recent_history %}
+        <div class="history-item">
+            <div>
+                <div style="font-weight: 600; text-transform: capitalize;">{{ item.food_name }}</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">{{ item.date }}</div>
+            </div>
+            <div style="font-weight: 700; color: var(--text-main);">+{{ item.calories|int }} kcal</div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p style="text-align: center; color: var(--text-muted); padding: 40px;">No entries yet today.</p>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Smart Recommendations -->
+<div class="glass-card animate-fade-in"
+    style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+        <h2>Smart Suggestions</h2>
+        <span
+            style="font-size: 0.75rem; background: rgba(59, 130, 246, 0.2); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-weight: 600;">Based
+            on your {{ user.diet }} diet</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 15px;">
+        {% if recommendations %}
+        {% for rec in recommendations %}
+        <div class="glass"
+            style="padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <div style="font-weight: 600; text-transform: capitalize;">{{ rec.food_name }}</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">{{ rec.calories|int }} kcal • {{
+                    rec.serving_size }}</div>
+            </div>
+            <form action="/log_calories" method="post">
+                <input type="hidden" name="food_name" value="{{ rec.food_name }}">
+                <input type="hidden" name="calories" value="{{ rec.calories }}">
+                <button type="submit" class="btn btn-outline" style="padding: 8px 12px; font-size: 0.8rem;">+
+                    Log</button>
+            </form>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p style="text-align: center; color: var(--text-muted); padding: 20px;">No suggestions found for your
+            budget.</p>
+        {% endif %}
+    </div>
+
+    <p style="margin-top: 25px; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+        Remaining Budget: <span style="color: var(--primary); font-weight: 700;">{{ (target_calories -
+            today_consumption)|int }} kcal</span>
+    </p>
+</div>
+
+<!-- Consumption Chart -->
+<div class="glass-card animate-fade-in">
+    <h2>30-Day Trend</h2>
+    <div style="height: 300px; width: 100%;">
+        <canvas id="progressChart"></canvas>
+    </div>
+</div>
+
+<!-- AI Nutrition Assistant Chat -->
+<div class="glass-card animate-fade-in"
+    style="grid-column: span 1; display: flex; flex-direction: column; height: 500px;">
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+        <div style="width: 10px; height: 10px; background: #10b981; border-radius: 50%; box-shadow: 0 0 10px #10b981;">
+        </div>
+        <h2>NutriSmart AI</h2>
+    </div>
+
+    <div id="chat-messages"
+        style="flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; padding-right: 10px;">
+        <div class="glass"
+            style="padding: 12px 16px; align-self: flex-start; max-width: 85%; border-radius: 4px 15px 15px 15px; font-size: 0.9rem;">
+            Hello! I'm your NutriSmart AI. How can I help you reach your <strong>{{ user.goal }}</strong> goal
+            today?
+        </div>
+    </div>
+
+    <div style="display: flex; gap: 10px;">
+        <input type="text" id="chat-input" placeholder="Ask about recipes, tips..."
+            style="flex-grow: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); padding: 12px 15px; border-radius: 8px; color: white;">
+        <button id="send-btn" class="btn btn-primary" style="padding: 10px 20px;">Send</button>
+    </div>
+</div>
+</div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Progress Ring
+        const ringCtx = document.getElementById('progressRing').getContext('2d');
+        const consumption = {{ today_consumption|default (0)
+    }};
+    const target = {{ target_calories|default (2000) }};
+    const percentage = Math.min(consumption / target, 1.2);
+
+    const progressColor = consumption > target ? '#ef4444' : '#10b981';
+
+    new Chart(ringCtx, {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: [consumption, Math.max(0, target - consumption)],
+                backgroundColor: [progressColor, 'rgba(255, 255, 255, 0.05)'],
+                borderWidth: 0,
+                borderRadius: 10,
+                cutout: '85%'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false }, tooltip: { enabled: false } },
+            animation: { duration: 2000, easing: 'easeOutQuart' }
+        }
+    });
+
+    // AI Chatbot Logic
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-btn');
+
+    function appendMessage(text, isBot) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'glass';
+        msgDiv.style.padding = '12px 16px';
+        msgDiv.style.alignSelf = isBot ? 'flex-start' : 'flex-end';
+        msgDiv.style.maxWidth = '85%';
+        msgDiv.style.borderRadius = isBot ? '4px 15px 15px 15px' : '15px 4px 15px 15px';
+        msgDiv.style.fontSize = '0.9rem';
+        if (!isBot) msgDiv.style.background = 'rgba(59, 130, 246, 0.2)';
+        msgDiv.innerHTML = text.replace(/\n/g, '<br>');
+        chatMessages.appendChild(msgDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    sendBtn.addEventListener('click', () => {
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        appendMessage(message, false);
+        chatInput.value = '';
+
+        fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: message })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.response) appendMessage(data.response, true);
+            })
+            .catch(err => {
+                console.error('Chat error:', err);
+                appendMessage("Sorry, I'm having trouble connecting to the brain.", true);
+            });
+    });
+
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendBtn.click();
+    });
+
+    // 30-Day Trend Chart
+    fetch('/api/progress_data')
+        .then(res => res.json())
+        .then(data => {
+            const ctx = document.getElementById('progressChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.dates,
+                    datasets: [{
+                        label: 'Calories',
+                        data: data.consumption,
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 4,
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } },
+                        x: { grid: { display: false }, ticks: { color: '#94a3b8' } }
+                    }
+                }
+            });
+        });
+
+    // OCR Label Scanner Logic
+    const scanBtn = document.getElementById('scan-label-btn');
+    const ocrInput = document.getElementById('ocr-input');
+    const ocrModal = document.getElementById('ocr-modal');
+
+    if (scanBtn && ocrInput) {
+        scanBtn.addEventListener('click', () => ocrInput.click());
+
+        ocrInput.addEventListener('change', function () {
+            if (!this.files || !this.files[0]) return;
+            const formData = new FormData();
+            formData.append('image', this.files[0]);
+            scanBtn.innerText = 'Scanning...';
+            scanBtn.disabled = true;
+
+            fetch('/api/scan_label', { method: 'POST', body: formData })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.error) {
+                        alert("Could not read label. Make sure the text is clear.");
+                    } else {
+                        document.getElementById('ocr-food-name').value = "Scanned Label";
+                        document.getElementById('ocr-calories').value = data.calories || 0;
+                        document.getElementById('ocr-protein').value = data.protein || 0;
+                        ocrModal.style.display = 'flex';
+                    }
+                })
+                .finally(() => {
+                    scanBtn.innerText = '🏷️ Scan Label';
+                    scanBtn.disabled = false;
+                });
+        });
+    }
+    });
+</script>
+{% endblock %}
