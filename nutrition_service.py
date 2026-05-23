@@ -133,6 +133,60 @@ class NutritionService:
             ("sandwich", 300, 15, 35, 12, 3.0, "1 sandwich", 150, "veg", "local_cache"),
             ("salad", 152, 5.0, 12, 10, 3.0, "1 bowl", 200, "vegan", "local_cache"),
             ("spaghetti", 221, 8.1, 43, 1.3, 2.5, "1 cup cooked", 140, "vegan", "local_cache"),
+            
+            # Additional classes from Ensemble/YOLO
+            ("apple pie", 237, 1.9, 34, 11, 2.1, "1 slice", 100, "veg", "local_cache"),
+            ("apple_pie", 237, 1.9, 34, 11, 2.1, "1 slice", 100, "veg", "local_cache"),
+            ("baklava", 334, 6.0, 30, 21, 2.0, "1 piece", 60, "veg", "local_cache"),
+            ("caesar salad", 190, 6.0, 8.0, 15, 2.0, "1 bowl", 150, "non-veg", "local_cache"),
+            ("caesar_salad", 190, 6.0, 8.0, 15, 2.0, "1 bowl", 150, "non-veg", "local_cache"),
+            ("cheesecake", 257, 4.4, 20, 18, 0.4, "1 slice", 80, "veg", "local_cache"),
+            ("chocolate cake", 389, 3.5, 50, 20, 2.0, "1 slice", 100, "veg", "local_cache"),
+            ("chocolate_cake", 389, 3.5, 50, 20, 2.0, "1 slice", 100, "veg", "local_cache"),
+            ("cup cakes", 250, 2.5, 33, 12, 0.5, "1 cupcake", 60, "veg", "local_cache"),
+            ("cup_cakes", 250, 2.5, 33, 12, 0.5, "1 cupcake", 60, "veg", "local_cache"),
+            ("cupcake", 250, 2.5, 33, 12, 0.5, "1 cupcake", 60, "veg", "local_cache"),
+            ("chocolate cupcake", 280, 2.8, 35, 14, 0.6, "1 cupcake", 65, "veg", "local_cache"),
+            ("chocolate_cupcake", 280, 2.8, 35, 14, 0.6, "1 cupcake", 65, "veg", "local_cache"),
+            ("french onion soup", 210, 10, 15, 12, 2.0, "1 bowl", 250, "non-veg", "local_cache"),
+            ("french_onion_soup", 210, 10, 15, 12, 2.0, "1 bowl", 250, "non-veg", "local_cache"),
+            ("fried rice", 333, 6.0, 45, 14, 2.0, "1 cup", 150, "non-veg", "local_cache"),
+            ("fried_rice", 333, 6.0, 45, 14, 2.0, "1 cup", 150, "non-veg", "local_cache"),
+            ("garlic bread", 350, 9.0, 46, 15, 2.0, "2 slices", 100, "veg", "local_cache"),
+            ("garlic_bread", 350, 9.0, 46, 15, 2.0, "2 slices", 100, "veg", "local_cache"),
+            ("greek salad", 106, 2.0, 6.0, 8.0, 2.0, "1 bowl", 150, "veg", "local_cache"),
+            ("greek_salad", 106, 2.0, 6.0, 8.0, 2.0, "1 bowl", 150, "veg", "local_cache"),
+            ("guacamole", 230, 3.0, 12, 21, 9.0, "0.5 cup", 100, "vegan", "local_cache"),
+            ("hummus", 166, 8.0, 14, 10, 6.0, "100g", 100, "vegan", "local_cache"),
+            ("ice cream", 207, 3.5, 24, 11, 0.7, "1 scoop", 100, "veg", "local_cache"),
+            ("ice_cream", 207, 3.5, 24, 11, 0.7, "1 scoop", 100, "veg", "local_cache"),
+            ("lasagna", 135, 15, 15, 6, 2.0, "1 piece", 150, "non-veg", "local_cache"),
+            ("macaroni and cheese", 310, 12, 35, 14, 1.0, "1 cup", 180, "veg", "local_cache"),
+            ("macaroni_and_cheese", 310, 12, 35, 14, 1.0, "1 cup", 180, "veg", "local_cache"),
+            ("onion rings", 411, 3.0, 48, 23, 3.0, "6 pieces", 100, "veg", "local_cache"),
+            ("onion_rings", 411, 3.0, 48, 23, 3.0, "6 pieces", 100, "veg", "local_cache"),
+            ("pancakes", 227, 6.0, 28, 10, 1.0, "2 pieces", 100, "veg", "local_cache"),
+            ("ramen", 436, 10, 52, 20, 2.0, "1 bowl", 300, "non-veg", "local_cache"),
+            ("steak", 271, 25, 0, 19, 0, "4 oz", 112, "non-veg", "local_cache"),
+            ("sushi", 300, 10, 60, 2.0, 2.0, "6 pieces", 200, "non-veg", "local_cache"),
+            ("tacos", 226, 11, 18, 12, 3.0, "1 taco", 100, "non-veg", "local_cache"),
+            ("waffles", 291, 7.9, 33, 14, 1.0, "1 waffle", 100, "veg", "local_cache"),
+            
+            # YOLO Classes (Spanish names)
+            ("aguacate", 160, 2.0, 8.5, 14.7, 6.7, "100g", 100, "vegan", "local_cache"),
+            ("ahuyama", 26, 1.0, 6.5, 0.1, 0.5, "100g", 100, "vegan", "local_cache"),
+            ("arepa", 250, 4.0, 50, 2.0, 3.0, "1 unit", 100, "vegan", "local_cache"),
+            ("arroz", 130, 2.7, 28, 0.3, 0.4, "100g", 100, "vegan", "local_cache"),
+            ("arroz con pollo", 150, 8.0, 20, 4.0, 1.0, "100g", 100, "non-veg", "local_cache"),
+            ("chicharron", 544, 61, 0, 31, 0, "100g", 100, "non-veg", "local_cache"),
+            ("chorizo", 455, 24, 1.0, 38, 0, "100g", 100, "non-veg", "local_cache"),
+            ("frijol", 143, 9.0, 26, 0.5, 9.0, "100g", 100, "vegan", "local_cache"),
+            ("huevo", 155, 13, 1.1, 11, 0, "100g", 100, "veg", "local_cache"),
+            ("lentejas", 116, 9.0, 20, 0.4, 8.0, "100g", 100, "vegan", "local_cache"),
+            ("papa", 77, 2.0, 17, 0.1, 2.2, "100g", 100, "vegan", "local_cache"),
+            ("platano", 122, 1.3, 32, 0.4, 2.3, "100g", 100, "vegan", "local_cache"),
+            ("pollo", 239, 27, 0, 14, 0, "100g", 100, "non-veg", "local_cache"),
+            ("trucha", 190, 21, 0, 11, 0, "100g", 100, "non-veg", "local_cache"),
         ]
         
         c.executemany("""
@@ -158,8 +212,20 @@ class NutritionService:
         """
         food_name = food_name.lower().strip()
         
-        # Try local cache first
+        # Try local cache first with exact name
         nutrition = self._lookup_local(food_name)
+        
+        # If not found, try replacing underscores with spaces
+        if not nutrition and "_" in food_name:
+            alt_name = food_name.replace("_", " ")
+            print(f"[DEBUG] '{food_name}' not found, trying '{alt_name}'...")
+            nutrition = self._lookup_local(alt_name)
+
+        # If still not found, try removing underscores entirely
+        if not nutrition and "_" in food_name:
+            alt_name = food_name.replace("_", "")
+            print(f"[DEBUG] '{food_name}' not found, trying '{alt_name}'...")
+            nutrition = self._lookup_local(alt_name)
         
         # Fallback to API if not found locally
         if not nutrition:
@@ -167,6 +233,13 @@ class NutritionService:
             nutrition = self._lookup_api(food_name)
             
             # Cache the result for future use
+            if nutrition:
+                self._cache_nutrition(food_name, nutrition)
+        
+        # Fallback to Gemini if USDA also failed
+        if not nutrition:
+            print(f"[GEMINI NUTRITION] USDA failed for '{food_name}', trying Gemini...")
+            nutrition = self._lookup_gemini(food_name)
             if nutrition:
                 self._cache_nutrition(food_name, nutrition)
         
@@ -280,6 +353,60 @@ class NutritionService:
                     }
         except Exception as e:
             print(f"[ERROR] API Error: {e}")
+        
+        return None
+    
+    def _lookup_gemini(self, food_name: str) -> Optional[Dict]:
+        """Query Gemini API for nutrition data as final fallback"""
+        try:
+            import json
+            from google import genai
+            
+            api_key = os.getenv("GEMINI_API_KEY")
+            if not api_key:
+                print("[GEMINI NUTRITION] No GEMINI_API_KEY found")
+                return None
+            
+            client = genai.Client(api_key=api_key)
+            
+            prompt = f"""Give me the nutrition values per 100g for "{food_name.replace('_', ' ')}".
+Return ONLY a JSON object with no extra text, no markdown, no backticks.
+Format exactly like this:
+{{"calories": 0, "protein": 0.0, "carbs": 0.0, "fat": 0.0, "fiber": 0.0}}
+Use realistic average values from nutritional databases."""
+
+            models = ['gemini-2.0-flash-lite', 'gemini-2.0-flash', 'gemini-2.5-flash']
+            
+            for model_name in models:
+                try:
+                    response = client.models.generate_content(
+                        model=model_name,
+                        contents=prompt
+                    )
+                    raw = response.text.strip()
+                    raw = raw.replace("```json", "").replace("```", "").strip()
+                    data = json.loads(raw)
+                    
+                    # Validate that we got real values (not all zeros)
+                    if data.get('calories', 0) > 0:
+                        print(f"[GEMINI NUTRITION] ✅ Got nutrition for '{food_name}' via {model_name}")
+                        return {
+                            'food_name': food_name,
+                            'calories': data.get('calories', 0),
+                            'protein': data.get('protein', 0),
+                            'carbs': data.get('carbs', 0),
+                            'fat': data.get('fat', 0),
+                            'fiber': data.get('fiber', 0),
+                            'serving_size': '100g',
+                            'serving_weight_grams': 100,
+                            'source': 'gemini_api'
+                        }
+                except Exception as e:
+                    print(f"[GEMINI NUTRITION] Model {model_name} failed: {e}")
+                    continue
+                    
+        except Exception as e:
+            print(f"[GEMINI NUTRITION] Error: {e}")
         
         return None
     

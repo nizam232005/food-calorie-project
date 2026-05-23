@@ -9,6 +9,19 @@
     </div>
 
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+        <!-- Image Card -->
+        <div class="glass-card animate-fade-in" style="padding: 0; overflow: hidden; height: 100%; border: none;">
+            <div style="height: 100%; min-height: 400px; position: relative;">
+                <img src="{{ url_for('static', filename=image_path) }}?t={{ timestamp }}"
+                    style="width: 100%; height: 100%; object-fit: cover; display: block;" alt="Analyzed food">
+                <div
+                    style="position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white;">
+                    <p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Analyzed Image</p>
+                    <h3 style="margin: 5px 0 0 0;">Visual Recognition Active</h3>
+                </div>
+            </div>
+        </div>
+
         <!-- Summary Card -->
         <div class="glass-card animate-fade-in"
             style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);">
@@ -36,7 +49,15 @@
             </div>
 
             <div style="margin-top: 40px;">
-                <a href="/dashboard" class="btn btn-primary" style="width: 100%; padding: 18px;">Confirm and Back</a>
+                <form action="/log_meal" method="post">
+                    {% for item in results %}
+                    <input type="hidden" name="food_names[]" value="{{ item.food }}">
+                    <input type="hidden" name="calories[]" value="{{ item.nutrition.calories }}">
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 18px;">
+                        Log Meal and Return to Dashboard
+                    </button>
+                </form>
             </div>
         </div>
 

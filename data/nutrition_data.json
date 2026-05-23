@@ -1,0 +1,1690 @@
+[
+  {
+    "name": "apple_pie",
+    "calories": 237,
+    "protein": 2.0,
+    "carbs": 34.0,
+    "fat": 11.0,
+    "fiber": 1.5
+  },
+  {
+    "name": "baby_back_ribs",
+    "calories": 297,
+    "protein": 22.0,
+    "carbs": 8.0,
+    "fat": 20.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "baklava",
+    "calories": 428,
+    "protein": 5.0,
+    "carbs": 52.0,
+    "fat": 23.0,
+    "fiber": 1.5
+  },
+  {
+    "name": "beef_carpaccio",
+    "calories": 150,
+    "protein": 18.0,
+    "carbs": 1.0,
+    "fat": 8.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "beef_tartare",
+    "calories": 196,
+    "protein": 20.0,
+    "carbs": 2.0,
+    "fat": 12.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "beet_salad",
+    "calories": 74,
+    "protein": 2.0,
+    "carbs": 10.0,
+    "fat": 3.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "beignets",
+    "calories": 320,
+    "protein": 5.0,
+    "carbs": 45.0,
+    "fat": 14.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "bibimbap",
+    "calories": 490,
+    "protein": 24.0,
+    "carbs": 70.0,
+    "fat": 12.0,
+    "fiber": 4.0
+  },
+  {
+    "name": "bread_pudding",
+    "calories": 260,
+    "protein": 6.0,
+    "carbs": 40.0,
+    "fat": 8.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "breakfast_burrito",
+    "calories": 345,
+    "protein": 16.0,
+    "carbs": 38.0,
+    "fat": 14.0,
+    "fiber": 3.0
+  },
+  {
+    "name": "bruschetta",
+    "calories": 190,
+    "protein": 5.0,
+    "carbs": 28.0,
+    "fat": 6.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "caesar_salad",
+    "calories": 180,
+    "protein": 8.0,
+    "carbs": 10.0,
+    "fat": 13.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "cannoli",
+    "calories": 297,
+    "protein": 6.0,
+    "carbs": 35.0,
+    "fat": 15.0,
+    "fiber": 0.5
+  },
+  {
+    "name": "caprese_salad",
+    "calories": 150,
+    "protein": 9.0,
+    "carbs": 4.0,
+    "fat": 11.0,
+    "fiber": 0.5
+  },
+  {
+    "name": "carrot_cake",
+    "calories": 415,
+    "protein": 4.0,
+    "carbs": 56.0,
+    "fat": 20.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "ceviche",
+    "calories": 130,
+    "protein": 18.0,
+    "carbs": 8.0,
+    "fat": 3.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "cheesecake",
+    "calories": 321,
+    "protein": 5.0,
+    "carbs": 26.0,
+    "fat": 22.0,
+    "fiber": 0.3
+  },
+  {
+    "name": "cheese_plate",
+    "calories": 350,
+    "protein": 20.0,
+    "carbs": 5.0,
+    "fat": 28.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "chicken_curry",
+    "calories": 243,
+    "protein": 20.0,
+    "carbs": 8.0,
+    "fat": 15.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "chicken_quesadilla",
+    "calories": 310,
+    "protein": 18.0,
+    "carbs": 28.0,
+    "fat": 14.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "chicken_wings",
+    "calories": 290,
+    "protein": 24.0,
+    "carbs": 5.0,
+    "fat": 19.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "chocolate_cake",
+    "calories": 370,
+    "protein": 5.0,
+    "carbs": 51.0,
+    "fat": 18.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "chocolate_mousse",
+    "calories": 250,
+    "protein": 4.0,
+    "carbs": 25.0,
+    "fat": 15.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "churros",
+    "calories": 372,
+    "protein": 5.0,
+    "carbs": 44.0,
+    "fat": 20.0,
+    "fiber": 1.5
+  },
+  {
+    "name": "clam_chowder",
+    "calories": 190,
+    "protein": 9.0,
+    "carbs": 18.0,
+    "fat": 9.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "club_sandwich",
+    "calories": 590,
+    "protein": 32.0,
+    "carbs": 48.0,
+    "fat": 28.0,
+    "fiber": 3.0
+  },
+  {
+    "name": "crab_cakes",
+    "calories": 185,
+    "protein": 13.0,
+    "carbs": 12.0,
+    "fat": 9.0,
+    "fiber": 0.5
+  },
+  {
+    "name": "creme_brulee",
+    "calories": 332,
+    "protein": 5.0,
+    "carbs": 28.0,
+    "fat": 22.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "croque_madame",
+    "calories": 520,
+    "protein": 28.0,
+    "carbs": 35.0,
+    "fat": 30.0,
+    "fiber": 1.5
+  },
+  {
+    "name": "cup_cakes",
+    "calories": 305,
+    "protein": 3.0,
+    "carbs": 44.0,
+    "fat": 14.0,
+    "fiber": 0.5
+  },
+  {
+    "name": "deviled_eggs",
+    "calories": 140,
+    "protein": 8.0,
+    "carbs": 1.0,
+    "fat": 11.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "donuts",
+    "calories": 452,
+    "protein": 5.0,
+    "carbs": 51.0,
+    "fat": 25.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "dumplings",
+    "calories": 280,
+    "protein": 10.0,
+    "carbs": 36.0,
+    "fat": 10.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "edamame",
+    "calories": 122,
+    "protein": 11.0,
+    "carbs": 10.0,
+    "fat": 5.0,
+    "fiber": 5.0
+  },
+  {
+    "name": "eggs_benedict",
+    "calories": 365,
+    "protein": 18.0,
+    "carbs": 23.0,
+    "fat": 22.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "escargots",
+    "calories": 136,
+    "protein": 14.0,
+    "carbs": 3.0,
+    "fat": 8.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "falafel",
+    "calories": 333,
+    "protein": 13.0,
+    "carbs": 32.0,
+    "fat": 18.0,
+    "fiber": 5.0
+  },
+  {
+    "name": "filet_mignon",
+    "calories": 227,
+    "protein": 26.0,
+    "carbs": 0.0,
+    "fat": 13.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "fish_and_chips",
+    "calories": 595,
+    "protein": 26.0,
+    "carbs": 62.0,
+    "fat": 28.0,
+    "fiber": 4.0
+  },
+  {
+    "name": "foie_gras",
+    "calories": 462,
+    "protein": 11.0,
+    "carbs": 5.0,
+    "fat": 43.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "french_fries",
+    "calories": 312,
+    "protein": 3.5,
+    "carbs": 41.0,
+    "fat": 15.0,
+    "fiber": 3.0
+  },
+  {
+    "name": "french_onion_soup",
+    "calories": 172,
+    "protein": 8.0,
+    "carbs": 18.0,
+    "fat": 7.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "french_toast",
+    "calories": 229,
+    "protein": 8.0,
+    "carbs": 27.0,
+    "fat": 10.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "fried_calamari",
+    "calories": 175,
+    "protein": 12.0,
+    "carbs": 11.0,
+    "fat": 9.0,
+    "fiber": 0.5
+  },
+  {
+    "name": "fried_rice",
+    "calories": 163,
+    "protein": 4.0,
+    "carbs": 26.0,
+    "fat": 5.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "frozen_yogurt",
+    "calories": 127,
+    "protein": 3.0,
+    "carbs": 24.0,
+    "fat": 2.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "garlic_bread",
+    "calories": 350,
+    "protein": 8.0,
+    "carbs": 44.0,
+    "fat": 16.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "gnocchi",
+    "calories": 130,
+    "protein": 4.0,
+    "carbs": 28.0,
+    "fat": 0.5,
+    "fiber": 2.0
+  },
+  {
+    "name": "greek_salad",
+    "calories": 95,
+    "protein": 3.0,
+    "carbs": 7.0,
+    "fat": 7.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "grilled_cheese_sandwich",
+    "calories": 440,
+    "protein": 18.0,
+    "carbs": 36.0,
+    "fat": 25.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "grilled_salmon",
+    "calories": 208,
+    "protein": 28.0,
+    "carbs": 0.0,
+    "fat": 10.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "guacamole",
+    "calories": 150,
+    "protein": 2.0,
+    "carbs": 9.0,
+    "fat": 13.0,
+    "fiber": 6.0
+  },
+  {
+    "name": "gyoza",
+    "calories": 210,
+    "protein": 8.0,
+    "carbs": 26.0,
+    "fat": 8.0,
+    "fiber": 1.5
+  },
+  {
+    "name": "hamburger",
+    "calories": 540,
+    "protein": 28.0,
+    "carbs": 42.0,
+    "fat": 28.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "hot_and_sour_soup",
+    "calories": 91,
+    "protein": 5.0,
+    "carbs": 12.0,
+    "fat": 3.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "hot_dog",
+    "calories": 200,
+    "protein": 8.0,
+    "carbs": 25.0,
+    "fat": 8.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "huevos_rancheros",
+    "calories": 395,
+    "protein": 18.0,
+    "carbs": 35.0,
+    "fat": 20.0,
+    "fiber": 5.0
+  },
+  {
+    "name": "hummus",
+    "calories": 166,
+    "protein": 8.0,
+    "carbs": 14.0,
+    "fat": 10.0,
+    "fiber": 4.0
+  },
+  {
+    "name": "ice_cream",
+    "calories": 207,
+    "protein": 4.0,
+    "carbs": 24.0,
+    "fat": 11.0,
+    "fiber": 0.5
+  },
+  {
+    "name": "lasagna",
+    "calories": 166,
+    "protein": 10.0,
+    "carbs": 16.0,
+    "fat": 7.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "lobster_bisque",
+    "calories": 170,
+    "protein": 12.0,
+    "carbs": 10.0,
+    "fat": 9.0,
+    "fiber": 0.5
+  },
+  {
+    "name": "lobster_roll_sandwich",
+    "calories": 436,
+    "protein": 22.0,
+    "carbs": 42.0,
+    "fat": 20.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "macaroni_and_cheese",
+    "calories": 310,
+    "protein": 12.0,
+    "carbs": 40.0,
+    "fat": 11.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "macarons",
+    "calories": 378,
+    "protein": 5.0,
+    "carbs": 56.0,
+    "fat": 16.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "miso_soup",
+    "calories": 40,
+    "protein": 3.0,
+    "carbs": 5.0,
+    "fat": 1.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "mussels",
+    "calories": 172,
+    "protein": 24.0,
+    "carbs": 7.0,
+    "fat": 4.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "nachos",
+    "calories": 346,
+    "protein": 10.0,
+    "carbs": 36.0,
+    "fat": 19.0,
+    "fiber": 4.0
+  },
+  {
+    "name": "omelette",
+    "calories": 154,
+    "protein": 11.0,
+    "carbs": 1.0,
+    "fat": 12.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "onion_rings",
+    "calories": 411,
+    "protein": 5.0,
+    "carbs": 44.0,
+    "fat": 25.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "oysters",
+    "calories": 68,
+    "protein": 7.0,
+    "carbs": 4.0,
+    "fat": 2.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "pad_thai",
+    "calories": 357,
+    "protein": 14.0,
+    "carbs": 44.0,
+    "fat": 14.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "paella",
+    "calories": 200,
+    "protein": 14.0,
+    "carbs": 23.0,
+    "fat": 6.0,
+    "fiber": 1.5
+  },
+  {
+    "name": "pancakes",
+    "calories": 227,
+    "protein": 6.0,
+    "carbs": 35.0,
+    "fat": 7.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "panna_cotta",
+    "calories": 213,
+    "protein": 3.0,
+    "carbs": 21.0,
+    "fat": 13.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "peking_duck",
+    "calories": 337,
+    "protein": 19.0,
+    "carbs": 6.0,
+    "fat": 27.0,
+    "fiber": 0.3
+  },
+  {
+    "name": "pho",
+    "calories": 215,
+    "protein": 17.0,
+    "carbs": 25.0,
+    "fat": 5.0,
+    "fiber": 1.5
+  },
+  {
+    "name": "pizza",
+    "calories": 266,
+    "protein": 11.0,
+    "carbs": 33.0,
+    "fat": 10.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "pork_chop",
+    "calories": 231,
+    "protein": 26.0,
+    "carbs": 0.0,
+    "fat": 14.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "poutine",
+    "calories": 740,
+    "protein": 25.0,
+    "carbs": 80.0,
+    "fat": 37.0,
+    "fiber": 5.0
+  },
+  {
+    "name": "prime_rib",
+    "calories": 400,
+    "protein": 30.0,
+    "carbs": 0.0,
+    "fat": 30.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "pulled_pork_sandwich",
+    "calories": 480,
+    "protein": 28.0,
+    "carbs": 45.0,
+    "fat": 18.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "ramen",
+    "calories": 436,
+    "protein": 20.0,
+    "carbs": 55.0,
+    "fat": 14.0,
+    "fiber": 3.0
+  },
+  {
+    "name": "ravioli",
+    "calories": 220,
+    "protein": 9.0,
+    "carbs": 30.0,
+    "fat": 7.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "red_velvet_cake",
+    "calories": 367,
+    "protein": 4.0,
+    "carbs": 52.0,
+    "fat": 17.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "risotto",
+    "calories": 166,
+    "protein": 4.0,
+    "carbs": 27.0,
+    "fat": 5.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "samosa",
+    "calories": 262,
+    "protein": 5.0,
+    "carbs": 30.0,
+    "fat": 14.0,
+    "fiber": 3.0
+  },
+  {
+    "name": "sashimi",
+    "calories": 127,
+    "protein": 20.0,
+    "carbs": 0.0,
+    "fat": 4.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "scallops",
+    "calories": 111,
+    "protein": 20.0,
+    "carbs": 5.0,
+    "fat": 1.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "seaweed_salad",
+    "calories": 70,
+    "protein": 2.0,
+    "carbs": 11.0,
+    "fat": 2.0,
+    "fiber": 3.0
+  },
+  {
+    "name": "shrimp_and_grits",
+    "calories": 320,
+    "protein": 22.0,
+    "carbs": 30.0,
+    "fat": 12.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "spaghetti_bolognese",
+    "calories": 259,
+    "protein": 14.0,
+    "carbs": 32.0,
+    "fat": 8.0,
+    "fiber": 3.0
+  },
+  {
+    "name": "spaghetti_carbonara",
+    "calories": 371,
+    "protein": 16.0,
+    "carbs": 44.0,
+    "fat": 15.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "spring_rolls",
+    "calories": 105,
+    "protein": 3.0,
+    "carbs": 14.0,
+    "fat": 5.0,
+    "fiber": 1.5
+  },
+  {
+    "name": "steak",
+    "calories": 271,
+    "protein": 26.0,
+    "carbs": 0.0,
+    "fat": 18.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "strawberry_shortcake",
+    "calories": 263,
+    "protein": 4.0,
+    "carbs": 40.0,
+    "fat": 10.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "sushi",
+    "calories": 143,
+    "protein": 6.0,
+    "carbs": 24.0,
+    "fat": 3.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "tacos",
+    "calories": 226,
+    "protein": 10.0,
+    "carbs": 20.0,
+    "fat": 11.0,
+    "fiber": 3.0
+  },
+  {
+    "name": "takoyaki",
+    "calories": 201,
+    "protein": 8.0,
+    "carbs": 22.0,
+    "fat": 9.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "tiramisu",
+    "calories": 240,
+    "protein": 5.0,
+    "carbs": 28.0,
+    "fat": 12.0,
+    "fiber": 0.5
+  },
+  {
+    "name": "tuna_tartare",
+    "calories": 144,
+    "protein": 20.0,
+    "carbs": 4.0,
+    "fat": 5.0,
+    "fiber": 0.5
+  },
+  {
+    "name": "waffles",
+    "calories": 291,
+    "protein": 8.0,
+    "carbs": 38.0,
+    "fat": 12.0,
+    "fiber": 1.5
+  },
+  {
+    "name": "biryani",
+    "calories": 250,
+    "protein": 9.0,
+    "carbs": 35.0,
+    "fat": 9.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "butter_chicken",
+    "calories": 280,
+    "protein": 22.0,
+    "carbs": 10.0,
+    "fat": 18.0,
+    "fiber": 1.5
+  },
+  {
+    "name": "dal",
+    "calories": 116,
+    "protein": 8.0,
+    "carbs": 18.0,
+    "fat": 1.5,
+    "fiber": 5.0
+  },
+  {
+    "name": "dal_makhani",
+    "calories": 180,
+    "protein": 9.0,
+    "carbs": 22.0,
+    "fat": 7.0,
+    "fiber": 6.0
+  },
+  {
+    "name": "paneer_butter_masala",
+    "calories": 280,
+    "protein": 12.0,
+    "carbs": 14.0,
+    "fat": 20.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "palak_paneer",
+    "calories": 240,
+    "protein": 11.0,
+    "carbs": 10.0,
+    "fat": 18.0,
+    "fiber": 3.0
+  },
+  {
+    "name": "dosa",
+    "calories": 168,
+    "protein": 4.0,
+    "carbs": 30.0,
+    "fat": 4.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "masala_dosa",
+    "calories": 210,
+    "protein": 5.0,
+    "carbs": 35.0,
+    "fat": 6.0,
+    "fiber": 3.0
+  },
+  {
+    "name": "idli",
+    "calories": 58,
+    "protein": 2.0,
+    "carbs": 12.0,
+    "fat": 0.4,
+    "fiber": 1.0
+  },
+  {
+    "name": "vada",
+    "calories": 198,
+    "protein": 6.0,
+    "carbs": 22.0,
+    "fat": 10.0,
+    "fiber": 3.0
+  },
+  {
+    "name": "upma",
+    "calories": 143,
+    "protein": 4.0,
+    "carbs": 22.0,
+    "fat": 5.0,
+    "fiber": 2.5
+  },
+  {
+    "name": "poha",
+    "calories": 158,
+    "protein": 3.0,
+    "carbs": 30.0,
+    "fat": 3.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "roti",
+    "calories": 120,
+    "protein": 4.0,
+    "carbs": 22.0,
+    "fat": 2.0,
+    "fiber": 2.5
+  },
+  {
+    "name": "chapati",
+    "calories": 120,
+    "protein": 4.0,
+    "carbs": 22.0,
+    "fat": 2.0,
+    "fiber": 2.5
+  },
+  {
+    "name": "naan",
+    "calories": 262,
+    "protein": 9.0,
+    "carbs": 45.0,
+    "fat": 5.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "paratha",
+    "calories": 260,
+    "protein": 5.0,
+    "carbs": 35.0,
+    "fat": 12.0,
+    "fiber": 3.0
+  },
+  {
+    "name": "aloo_paratha",
+    "calories": 300,
+    "protein": 6.0,
+    "carbs": 42.0,
+    "fat": 13.0,
+    "fiber": 4.0
+  },
+  {
+    "name": "puri",
+    "calories": 150,
+    "protein": 3.0,
+    "carbs": 20.0,
+    "fat": 7.0,
+    "fiber": 1.5
+  },
+  {
+    "name": "chole",
+    "calories": 164,
+    "protein": 9.0,
+    "carbs": 24.0,
+    "fat": 4.0,
+    "fiber": 7.0
+  },
+  {
+    "name": "chole_bhature",
+    "calories": 450,
+    "protein": 12.0,
+    "carbs": 60.0,
+    "fat": 18.0,
+    "fiber": 5.0
+  },
+  {
+    "name": "rajma",
+    "calories": 144,
+    "protein": 9.0,
+    "carbs": 24.0,
+    "fat": 1.0,
+    "fiber": 7.0
+  },
+  {
+    "name": "rajma_chawal",
+    "calories": 280,
+    "protein": 11.0,
+    "carbs": 50.0,
+    "fat": 3.0,
+    "fiber": 7.0
+  },
+  {
+    "name": "aloo_gobi",
+    "calories": 130,
+    "protein": 4.0,
+    "carbs": 18.0,
+    "fat": 5.0,
+    "fiber": 4.0
+  },
+  {
+    "name": "aloo_matar",
+    "calories": 140,
+    "protein": 4.5,
+    "carbs": 20.0,
+    "fat": 5.0,
+    "fiber": 4.0
+  },
+  {
+    "name": "baingan_bharta",
+    "calories": 120,
+    "protein": 3.0,
+    "carbs": 14.0,
+    "fat": 6.0,
+    "fiber": 5.0
+  },
+  {
+    "name": "pav_bhaji",
+    "calories": 320,
+    "protein": 8.0,
+    "carbs": 48.0,
+    "fat": 11.0,
+    "fiber": 5.0
+  },
+  {
+    "name": "vada_pav",
+    "calories": 290,
+    "protein": 7.0,
+    "carbs": 40.0,
+    "fat": 12.0,
+    "fiber": 3.0
+  },
+  {
+    "name": "bhel_puri",
+    "calories": 180,
+    "protein": 5.0,
+    "carbs": 32.0,
+    "fat": 4.0,
+    "fiber": 3.0
+  },
+  {
+    "name": "pani_puri",
+    "calories": 200,
+    "protein": 4.0,
+    "carbs": 35.0,
+    "fat": 5.0,
+    "fiber": 3.0
+  },
+  {
+    "name": "tandoori_chicken",
+    "calories": 185,
+    "protein": 28.0,
+    "carbs": 3.0,
+    "fat": 7.0,
+    "fiber": 0.5
+  },
+  {
+    "name": "chicken_tikka",
+    "calories": 172,
+    "protein": 25.0,
+    "carbs": 4.0,
+    "fat": 7.0,
+    "fiber": 0.5
+  },
+  {
+    "name": "chicken_tikka_masala",
+    "calories": 263,
+    "protein": 22.0,
+    "carbs": 12.0,
+    "fat": 15.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "mutton_curry",
+    "calories": 295,
+    "protein": 24.0,
+    "carbs": 6.0,
+    "fat": 20.0,
+    "fiber": 1.5
+  },
+  {
+    "name": "fish_curry",
+    "calories": 198,
+    "protein": 22.0,
+    "carbs": 8.0,
+    "fat": 9.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "prawn_curry",
+    "calories": 180,
+    "protein": 20.0,
+    "carbs": 7.0,
+    "fat": 8.0,
+    "fiber": 1.5
+  },
+  {
+    "name": "khichdi",
+    "calories": 155,
+    "protein": 6.0,
+    "carbs": 28.0,
+    "fat": 2.5,
+    "fiber": 3.0
+  },
+  {
+    "name": "halwa",
+    "calories": 340,
+    "protein": 4.0,
+    "carbs": 50.0,
+    "fat": 14.0,
+    "fiber": 1.5
+  },
+  {
+    "name": "gulab_jamun",
+    "calories": 150,
+    "protein": 3.0,
+    "carbs": 23.0,
+    "fat": 6.0,
+    "fiber": 0.3
+  },
+  {
+    "name": "rasgulla",
+    "calories": 107,
+    "protein": 3.0,
+    "carbs": 18.0,
+    "fat": 3.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "kheer",
+    "calories": 180,
+    "protein": 5.0,
+    "carbs": 30.0,
+    "fat": 5.0,
+    "fiber": 0.5
+  },
+  {
+    "name": "jalebi",
+    "calories": 370,
+    "protein": 3.0,
+    "carbs": 65.0,
+    "fat": 11.0,
+    "fiber": 0.5
+  },
+  {
+    "name": "ladoo",
+    "calories": 175,
+    "protein": 3.0,
+    "carbs": 25.0,
+    "fat": 7.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "barfi",
+    "calories": 380,
+    "protein": 7.0,
+    "carbs": 52.0,
+    "fat": 16.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "rasmalai",
+    "calories": 186,
+    "protein": 6.0,
+    "carbs": 24.0,
+    "fat": 8.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "rava_dosa",
+    "calories": 195,
+    "protein": 4.0,
+    "carbs": 32.0,
+    "fat": 6.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "uttapam",
+    "calories": 175,
+    "protein": 5.0,
+    "carbs": 30.0,
+    "fat": 4.0,
+    "fiber": 3.0
+  },
+  {
+    "name": "sambhar",
+    "calories": 75,
+    "protein": 4.0,
+    "carbs": 11.0,
+    "fat": 1.5,
+    "fiber": 4.0
+  },
+  {
+    "name": "rasam",
+    "calories": 40,
+    "protein": 2.0,
+    "carbs": 7.0,
+    "fat": 0.5,
+    "fiber": 1.5
+  },
+  {
+    "name": "pulao",
+    "calories": 180,
+    "protein": 4.0,
+    "carbs": 34.0,
+    "fat": 4.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "jeera_rice",
+    "calories": 150,
+    "protein": 3.0,
+    "carbs": 30.0,
+    "fat": 3.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "plain_rice",
+    "calories": 130,
+    "protein": 2.7,
+    "carbs": 28.0,
+    "fat": 0.3,
+    "fiber": 0.4
+  },
+  {
+    "name": "egg_curry",
+    "calories": 210,
+    "protein": 12.0,
+    "carbs": 8.0,
+    "fat": 15.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "egg_fried_rice",
+    "calories": 180,
+    "protein": 7.0,
+    "carbs": 28.0,
+    "fat": 6.0,
+    "fiber": 1.5
+  },
+  {
+    "name": "aloo_sabzi",
+    "calories": 130,
+    "protein": 3.0,
+    "carbs": 22.0,
+    "fat": 4.0,
+    "fiber": 3.0
+  },
+  {
+    "name": "mixed_vegetable_curry",
+    "calories": 120,
+    "protein": 4.0,
+    "carbs": 15.0,
+    "fat": 5.0,
+    "fiber": 4.0
+  },
+  {
+    "name": "paneer",
+    "calories": 265,
+    "protein": 18.0,
+    "carbs": 3.0,
+    "fat": 20.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "lassi",
+    "calories": 150,
+    "protein": 6.0,
+    "carbs": 22.0,
+    "fat": 4.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "chai",
+    "calories": 60,
+    "protein": 2.0,
+    "carbs": 9.0,
+    "fat": 2.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "masala_chai",
+    "calories": 80,
+    "protein": 2.5,
+    "carbs": 12.0,
+    "fat": 2.5,
+    "fiber": 0.0
+  },
+  {
+    "name": "mango_lassi",
+    "calories": 190,
+    "protein": 5.0,
+    "carbs": 35.0,
+    "fat": 4.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "coconut_rice",
+    "calories": 195,
+    "protein": 3.0,
+    "carbs": 36.0,
+    "fat": 5.0,
+    "fiber": 1.5
+  },
+  {
+    "name": "tamarind_rice",
+    "calories": 185,
+    "protein": 3.5,
+    "carbs": 35.0,
+    "fat": 4.5,
+    "fiber": 2.0
+  },
+  {
+    "name": "lemon_rice",
+    "calories": 160,
+    "protein": 3.0,
+    "carbs": 30.0,
+    "fat": 4.0,
+    "fiber": 1.5
+  },
+  {
+    "name": "appam",
+    "calories": 120,
+    "protein": 3.0,
+    "carbs": 24.0,
+    "fat": 1.5,
+    "fiber": 1.0
+  },
+  {
+    "name": "puttu",
+    "calories": 140,
+    "protein": 3.5,
+    "carbs": 28.0,
+    "fat": 1.5,
+    "fiber": 2.0
+  },
+  {
+    "name": "kerala_fish_curry",
+    "calories": 210,
+    "protein": 22.0,
+    "carbs": 6.0,
+    "fat": 11.0,
+    "fiber": 2.0
+  },
+  {
+    "name": "avial",
+    "calories": 130,
+    "protein": 3.0,
+    "carbs": 14.0,
+    "fat": 7.0,
+    "fiber": 4.0
+  },
+  {
+    "name": "kootu",
+    "calories": 120,
+    "protein": 5.0,
+    "carbs": 15.0,
+    "fat": 5.0,
+    "fiber": 5.0
+  },
+  {
+    "name": "thoran",
+    "calories": 110,
+    "protein": 3.0,
+    "carbs": 12.0,
+    "fat": 6.0,
+    "fiber": 4.0
+  },
+  {
+    "name": "banana",
+    "calories": 89,
+    "protein": 1.1,
+    "carbs": 23.0,
+    "fat": 0.3,
+    "fiber": 2.6
+  },
+  {
+    "name": "apple",
+    "calories": 52,
+    "protein": 0.3,
+    "carbs": 14.0,
+    "fat": 0.2,
+    "fiber": 2.4
+  },
+  {
+    "name": "orange",
+    "calories": 47,
+    "protein": 0.9,
+    "carbs": 12.0,
+    "fat": 0.1,
+    "fiber": 2.4
+  },
+  {
+    "name": "mango",
+    "calories": 60,
+    "protein": 0.8,
+    "carbs": 15.0,
+    "fat": 0.4,
+    "fiber": 1.6
+  },
+  {
+    "name": "grapes",
+    "calories": 69,
+    "protein": 0.7,
+    "carbs": 18.0,
+    "fat": 0.2,
+    "fiber": 0.9
+  },
+  {
+    "name": "watermelon",
+    "calories": 30,
+    "protein": 0.6,
+    "carbs": 8.0,
+    "fat": 0.2,
+    "fiber": 0.4
+  },
+  {
+    "name": "egg",
+    "calories": 155,
+    "protein": 13.0,
+    "carbs": 1.1,
+    "fat": 11.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "boiled_egg",
+    "calories": 155,
+    "protein": 13.0,
+    "carbs": 1.1,
+    "fat": 11.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "chicken_breast",
+    "calories": 165,
+    "protein": 31.0,
+    "carbs": 0.0,
+    "fat": 3.6,
+    "fiber": 0.0
+  },
+  {
+    "name": "white_rice",
+    "calories": 130,
+    "protein": 2.7,
+    "carbs": 28.0,
+    "fat": 0.3,
+    "fiber": 0.4
+  },
+  {
+    "name": "brown_rice",
+    "calories": 216,
+    "protein": 5.0,
+    "carbs": 45.0,
+    "fat": 1.8,
+    "fiber": 3.5
+  },
+  {
+    "name": "oats",
+    "calories": 389,
+    "protein": 17.0,
+    "carbs": 66.0,
+    "fat": 7.0,
+    "fiber": 10.0
+  },
+  {
+    "name": "oatmeal",
+    "calories": 68,
+    "protein": 2.5,
+    "carbs": 12.0,
+    "fat": 1.4,
+    "fiber": 1.7
+  },
+  {
+    "name": "bread",
+    "calories": 265,
+    "protein": 9.0,
+    "carbs": 49.0,
+    "fat": 3.2,
+    "fiber": 2.7
+  },
+  {
+    "name": "milk",
+    "calories": 61,
+    "protein": 3.2,
+    "carbs": 4.8,
+    "fat": 3.3,
+    "fiber": 0.0
+  },
+  {
+    "name": "yogurt",
+    "calories": 59,
+    "protein": 3.5,
+    "carbs": 5.0,
+    "fat": 3.3,
+    "fiber": 0.0
+  },
+  {
+    "name": "cheese",
+    "calories": 402,
+    "protein": 25.0,
+    "carbs": 1.3,
+    "fat": 33.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "butter",
+    "calories": 717,
+    "protein": 0.9,
+    "carbs": 0.1,
+    "fat": 81.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "olive_oil",
+    "calories": 884,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 100.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "potato",
+    "calories": 77,
+    "protein": 2.0,
+    "carbs": 17.0,
+    "fat": 0.1,
+    "fiber": 2.2
+  },
+  {
+    "name": "sweet_potato",
+    "calories": 86,
+    "protein": 1.6,
+    "carbs": 20.0,
+    "fat": 0.1,
+    "fiber": 3.0
+  },
+  {
+    "name": "tomato",
+    "calories": 18,
+    "protein": 0.9,
+    "carbs": 3.9,
+    "fat": 0.2,
+    "fiber": 1.2
+  },
+  {
+    "name": "onion",
+    "calories": 40,
+    "protein": 1.1,
+    "carbs": 9.3,
+    "fat": 0.1,
+    "fiber": 1.7
+  },
+  {
+    "name": "spinach",
+    "calories": 23,
+    "protein": 2.9,
+    "carbs": 3.6,
+    "fat": 0.4,
+    "fiber": 2.2
+  },
+  {
+    "name": "carrot",
+    "calories": 41,
+    "protein": 0.9,
+    "carbs": 10.0,
+    "fat": 0.2,
+    "fiber": 2.8
+  },
+  {
+    "name": "cucumber",
+    "calories": 15,
+    "protein": 0.7,
+    "carbs": 3.6,
+    "fat": 0.1,
+    "fiber": 0.5
+  },
+  {
+    "name": "lentils",
+    "calories": 116,
+    "protein": 9.0,
+    "carbs": 20.0,
+    "fat": 0.4,
+    "fiber": 8.0
+  },
+  {
+    "name": "chickpeas",
+    "calories": 164,
+    "protein": 9.0,
+    "carbs": 27.0,
+    "fat": 2.6,
+    "fiber": 8.0
+  },
+  {
+    "name": "almonds",
+    "calories": 579,
+    "protein": 21.0,
+    "carbs": 22.0,
+    "fat": 50.0,
+    "fiber": 12.5
+  },
+  {
+    "name": "peanuts",
+    "calories": 567,
+    "protein": 26.0,
+    "carbs": 16.0,
+    "fat": 49.0,
+    "fiber": 8.5
+  },
+  {
+    "name": "coffee",
+    "calories": 2,
+    "protein": 0.3,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "orange_juice",
+    "calories": 45,
+    "protein": 0.7,
+    "carbs": 10.0,
+    "fat": 0.2,
+    "fiber": 0.2
+  },
+  {
+    "name": "coca_cola",
+    "calories": 37,
+    "protein": 0.0,
+    "carbs": 9.6,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "apple",
+    "calories": 52,
+    "protein": 0.3,
+    "carbs": 13.8,
+    "fat": 0.2,
+    "fiber": 2.4
+  },
+  {
+    "name": "drink",
+    "calories": 40,
+    "protein": 0.0,
+    "carbs": 10.0,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "drink",
+    "calories": 42,
+    "protein": 0.0,
+    "carbs": 10.5,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "calories",
+    "calories": 0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  {
+    "name": "chicken",
+    "calories": 165,
+    "protein": 31.0,
+    "carbs": 0.0,
+    "fat": 3.6,
+    "fiber": 0.0
+  },
+  {
+    "name": "chicken_nuggets",
+    "calories": 280,
+    "protein": 15.0,
+    "carbs": 17.0,
+    "fat": 18.0,
+    "fiber": 1.0
+  },
+  {
+    "name": "nutrients_papaya",
+    "calories": 43,
+    "protein": 0.5,
+    "carbs": 10.8,
+    "fat": 0.3,
+    "fiber": 1.7
+  },
+  {
+    "name": "mango_lassi",
+    "calories": 85,
+    "protein": 2.5,
+    "carbs": 15.0,
+    "fat": 2.0,
+    "fiber": 0.7
+  }
+]

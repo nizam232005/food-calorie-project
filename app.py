@@ -6,8 +6,10 @@ import numpy as np
 from PIL import Image
 import tensorflow as tf
 import requests
-from clarifai.client.model import Model
+from google import genai
+import base64
 from nutrition_service import get_nutrition
+import time
 try:
     from dotenv import load_dotenv
     load_dotenv()
@@ -70,6 +72,59 @@ for p in MODEL_PATHS:
     else:
         print(f"⚠️ Warning: Model not found at {p}")
 
+
+
+# ------------------ INDIAN FOOD MODEL CONFIG ------------------
+import json
+
+INDIAN_MODEL_PATH = os.path.join(ENSEMBLE_DIR, "indian_food_model.keras")
+INDIAN_CLASSES_PATH = os.path.join(BASE_DIR, "data", "indian_food_classes.json")
+
+# Load Indian food classes
+with open(INDIAN_CLASSES_PATH, "r") as f:
+    INDIAN_CLASSES_DICT = json.load(f)
+INDIAN_CLASSES = [INDIAN_CLASSES_DICT[str(i)] for i in range(len(INDIAN_CLASSES_DICT))]
+
+# Load Indian food model
+if os.path.exists(INDIAN_MODEL_PATH):
+    print(f"Loading Indian food model: {INDIAN_MODEL_PATH}")
+    indian_food_model = tf.keras.models.load_model(
+        INDIAN_MODEL_PATH,
+        custom_objects={'DepthwiseConv2D': PatchedDepthwiseConv2D}
+    )
+    print(f"✅ Indian food model loaded! ({len(INDIAN_CLASSES)} classes)")
+else:
+    indian_food_model = None
+    print("⚠️ Indian food model not found!")
+
+def predict_indian_food(img_array):
+    """Predict Indian food using dedicated Indian food classifier"""
+    if indian_food_model is None:
+        return "Unknown", 0.0
+    
+    img = Image.fromarray(img_array.astype('uint8')).convert("RGB")
+    img = img.resize((224, 224))
+    img = np.array(img).astype(np.float32)
+    img = (img / 127.5) - 1
+    input_data = np.expand_dims(img, axis=0)
+    
+    preds = indian_food_model.predict(input_data)
+    confidence = float(np.max(preds))
+    idx = np.argmax(preds)
+    
+    if idx < len(INDIAN_CLASSES):
+        label = INDIAN_CLASSES[idx]
+    else:
+        label = "Unknown"
+    
+    return label, confidence
+
+def is_indian_food(label: str) -> bool:
+    """Check if a predicted label is an Indian food"""
+    label_lower = label.lower().replace(" ", "_")
+    return label_lower in [c.lower() for c in INDIAN_CLASSES]
+
+
 # ------------------ YOLO CONFIG ------------------
 from ultralytics import YOLO
 CUSTOM_MODEL_PATH = os.path.join(BASE_DIR, "yolo_models", "yolo26n.pt")
@@ -91,11 +146,22 @@ YOLO_CLASSES = [
     'Papa', 'Platano', 'Pollo', 'QR', 'Trucha'
 ]
 
-# ------------------ CLARIFAI CONFIG ------------------
-CLARIFAI_PAT = "1c8db2337b9e460a9386b6d3bbd8a2e7"
-CLARIFAI_USER_ID = "clarifai"
-CLARIFAI_APP_ID = "main"
-CLARIFAI_MODEL_ID = "bd367be194cf45149e75f01d59f77ba7"
+# Ensure static directory exists
+UPLOAD_FOLDER = os.path.join(BASE_DIR, "static")
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+# ------------------ GEMINI VISION CONFIG ------------------
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_VISION_MODELS = [
+    'gemini-2.0-flash-lite',
+    'gemini-2.0-flash',
+    'gemini-2.5-flash',
+]
+if GEMINI_API_KEY:
+    gemini_client = genai.Client(api_key=GEMINI_API_KEY)
+else:
+    gemini_client = None
+    print("⚠️ GEMINI_API_KEY not found — Gemini Vision will not work")
 
 
 # ------------------ LOGMEAL CONFIG ------------------
@@ -106,7 +172,7 @@ LOGMEAL_API_URL = "https://api.logmeal.es/v2/image/recognition/dish"
 app = Flask(__name__)
 app.secret_key = "super-secret-key"   # change later for production
 DB_NAME = "database.db"
-FOOD_RECOGNITION_API = os.getenv("FOOD_RECOGNITION_API", "logmeal").lower()
+FOOD_RECOGNITION_API = os.getenv("FOOD_RECOGNITION_API", "ensemble").lower()
 print(f"DEBUG: FOOD_RECOGNITION_API loaded as: {FOOD_RECOGNITION_API}")
 print(f"DEBUG: LOGMEAL_API_KEY present: {LOGMEAL_API_KEY is not None}")
 
@@ -173,7 +239,7 @@ def detect_foods(image_file):
                             conf = float(box.conf[0])
                             
                             # Hybrid Logic: Decide whether to use YOLO label, Ensemble, or external API
-                            if USING_CUSTOM_YOLO and conf > 0.4:
+                            if USING_CUSTOM_YOLO and conf > 0.3:
                                 # Custom YOLO is very reliable for its trained classes
                                 class_id = int(box.cls[0])
                                 if class_id < len(YOLO_CLASSES):
@@ -181,23 +247,43 @@ def detect_foods(image_file):
                                     ensemble_conf = conf
                                 else:
                                     # Fallback if class_id doesn't match custom classes
-                                    print(f"DEBUG: YOLO class_id {class_id} not in custom set, using {FOOD_RECOGNITION_API}...")
-                                    if FOOD_RECOGNITION_API == "logmeal":
+                                    print(f"DEBUG: YOLO class_id {class_id} not in custom set, using ensemble first...")
+                                    label, ensemble_conf = predict_ensemble(crop)
+                                    
+                                    # Fallback to Gemini if ensemble is not confident
+                                    if ensemble_conf < 0.6:
+                                        print(f"DEBUG: Ensemble low confidence ({ensemble_conf}), trying Gemini...")
                                         import io
                                         crop_img = Image.fromarray(crop)
                                         img_byte_arr = io.BytesIO()
                                         crop_img.save(img_byte_arr, format='JPEG')
                                         img_byte_arr.seek(0)
-                                        label, ensemble_conf = predict_logmeal(img_byte_arr)
-                                    elif FOOD_RECOGNITION_API == "clarifai":
-                                        import io
-                                        crop_img = Image.fromarray(crop)
-                                        img_byte_arr = io.BytesIO()
-                                        crop_img.save(img_byte_arr, format='JPEG')
-                                        img_byte_arr.seek(0)
-                                        label, ensemble_conf = predict_clarifai(img_byte_arr)
+                                        g_label, g_conf = predict_gemini(img_byte_arr)
+                                        if g_label != "Unknown":
+                                            label, ensemble_conf = g_label, g_conf
                                     else:
-                                        label, ensemble_conf = predict_ensemble(crop)
+                                        print(f"DEBUG: Ensemble confident: {label} ({ensemble_conf})")
+                            elif FOOD_RECOGNITION_API == "ensemble":
+                                label, ensemble_conf = predict_ensemble(crop)
+                                if ensemble_conf < 0.6:
+                                    print(f"DEBUG: Ensemble low confidence ({ensemble_conf}), trying Gemini...")
+                                    import io
+                                    crop_img = Image.fromarray(crop)
+                                    img_byte_arr = io.BytesIO()
+                                    crop_img.save(img_byte_arr, format='JPEG')
+                                    img_byte_arr.seek(0)
+                                    g_label, g_conf = predict_gemini(img_byte_arr)
+                                    if g_label != "Unknown":
+                                        label, ensemble_conf = g_label, g_conf
+                            elif FOOD_RECOGNITION_API == "gemini":
+                                import io
+                                crop_img = Image.fromarray(crop)
+                                img_byte_arr = io.BytesIO()
+                                crop_img.save(img_byte_arr, format='JPEG')
+                                img_byte_arr.seek(0)
+                                label, ensemble_conf = predict_gemini(img_byte_arr)
+                                if label == "Unknown":
+                                    label, ensemble_conf = predict_ensemble(crop)
                             elif FOOD_RECOGNITION_API == "logmeal":
                                 # Convert crop back to bytes
                                 import io
@@ -207,23 +293,20 @@ def detect_foods(image_file):
                                 img_byte_arr.seek(0)
                                 
                                 label, ensemble_conf = predict_logmeal(img_byte_arr)
-                                if label == "Unauthorized":
-                                    print("DEBUG: LogMeal unauthorized, falling back to Clarifai...")
-                                    img_byte_arr.seek(0)
-                                    label, ensemble_conf = predict_clarifai(img_byte_arr)
-                                    # If Clarifai also fails or looks unknown, then local ensemble
-                                    if label == "Unknown":
-                                        label, ensemble_conf = predict_ensemble(crop)
-                            elif FOOD_RECOGNITION_API == "clarifai":
-                                import io
-                                crop_img = Image.fromarray(crop)
-                                img_byte_arr = io.BytesIO()
-                                crop_img.save(img_byte_arr, format='JPEG')
-                                img_byte_arr.seek(0)
-                                label, ensemble_conf = predict_clarifai(img_byte_arr)
+                                if label == "Unauthorized" or label == "Unknown":
+                                    label, ensemble_conf = predict_ensemble(crop)
                             else:
                                 # Default to local ensemble
                                 label, ensemble_conf = predict_ensemble(crop)
+                                if ensemble_conf < 0.6:
+                                    import io
+                                    crop_img = Image.fromarray(crop)
+                                    img_byte_arr = io.BytesIO()
+                                    crop_img.save(img_byte_arr, format='JPEG')
+                                    img_byte_arr.seek(0)
+                                    g_label, g_conf = predict_gemini(img_byte_arr)
+                                    if g_label != "Unknown":
+                                        label, ensemble_conf = g_label, g_conf
 
                             if crop.size > 0:
                                 detections.append({
@@ -283,37 +366,58 @@ def predict_logmeal(image_file):
         
     return "Unknown", 0.0
 
-def predict_clarifai(image_file):
-    image_bytes = image_file.read()
-    image_file.seek(0) # Reset pointer
+def predict_gemini(image_file):
+    """Predict food using Google Gemini Vision API"""
+    if not gemini_client:
+        print("GEMINI ERROR: Client not initialized (missing API key)")
+        return "Unknown", 0.0
     
-    clarifai_model = Model(
-        user_id=CLARIFAI_USER_ID,
-        app_id=CLARIFAI_APP_ID,
-        model_id=CLARIFAI_MODEL_ID,
-        pat=CLARIFAI_PAT
+    image_bytes = image_file.read()
+    image_file.seek(0)  # Reset pointer
+    
+    prompt = (
+        "Identify all the individual food items in this image. "
+        "Return the result as a comma-separated list in lowercase with underscores instead of spaces "
+        "(e.g. 'chicken_curry, fried_rice, caesar_salad'). "
+        "Include only the food names, no introductory text or numbering. "
+        "If you cannot identify any food, return exactly 'unknown'."
     )
     
-    try:
-        model_prediction = clarifai_model.predict_by_bytes(image_bytes, input_type="image")
-        if not hasattr(model_prediction, 'outputs') or not model_prediction.outputs:
-            print("CLARIFAI: No outputs found in response")
-            return "Unknown", 0.0
+    for model_name in GEMINI_VISION_MODELS:
+        try:
+            response = gemini_client.models.generate_content(
+                model=model_name,
+                contents=[
+                    {
+                        "parts": [
+                            {"text": prompt},
+                            {
+                                "inline_data": {
+                                    "mime_type": "image/jpeg",
+                                    "data": base64.b64encode(image_bytes).decode("utf-8")
+                                }
+                            }
+                        ]
+                    }
+                ]
+            )
             
-        output = model_prediction.outputs[0]
-        if not hasattr(output, 'data') or not output.data or not hasattr(output.data, 'concepts'):
-            print("CLARIFAI: Output has no concept data")
-            return "Unknown", 0.0
+            raw_label = response.text.strip().lower().replace(" ", "_")
+            # Clean up any extra formatting Gemini might add
+            raw_label = raw_label.strip("'\"`*").strip()
             
-        concepts = output.data.concepts
-        
-        # Get the top concept
-        if concepts and len(concepts) > 0:
-            top_concept = concepts[0]
-            return top_concept.name, top_concept.value
-    except Exception as e:
-        print(f"CLARIFAI ERROR: {e}")
-        
+            if raw_label and raw_label != "unknown":
+                print(f"[GEMINI] Recognition successful with {model_name}: {raw_label}")
+                return raw_label, 0.85  # Gemini doesn't give numeric confidence, use 0.85
+            else:
+                print(f"[GEMINI] Could not identify food with {model_name}")
+                return "Unknown", 0.0
+                
+        except Exception as e:
+            print(f"[GEMINI] Model {model_name} failed: {e}")
+            continue
+    
+    print("[GEMINI] All models failed")
     return "Unknown", 0.0
 
 # ------------------ image recognition using API ------------------
@@ -555,20 +659,24 @@ def log_calories():
     # Handle optional calories
     print(f"[DEBUG] Logging food: {food_name}, Portion: {portion_size}, Input Cal: {calories_str}")
     
-    if not calories_str:
-        # Auto-lookup if calories are not provided
+    if not calories_str or calories_str == 'N/A':
+        # Auto-lookup if calories are not provided or 'N/A'
         nutrition = get_nutrition(food_name, portion_size=portion_size)
         calories = nutrition.get('calories')
         print(f"[DEBUG] Lookup result for {food_name}: {calories}")
         
         if calories == 'N/A' or calories is None:
             calories = 0.0 # Default to 0 if not found
-            print(f"[DEBUG] Food not found, defaulting to 0")
+            print(f"[DEBUG] Food not found after lookup, defaulting to 0.0")
     else:
         try:
             calories = float(calories_str)
         except (ValueError, TypeError):
-            calories = 0.0
+            # Try lookup if string is invalid but not empty
+            nutrition = get_nutrition(food_name, portion_size=portion_size)
+            calories = nutrition.get('calories')
+            if calories == 'N/A' or calories is None:
+                calories = 0.0
     
     print(f"[DEBUG] Final calories to log: {calories}")
     
@@ -581,6 +689,41 @@ def log_calories():
         print(f"[DEBUG] Successfully logged to DB for date: {date}")
     except Exception as e:
         print(f"[DEBUG] DB Error in log_calories: {e}")
+    finally:
+        conn.close()
+    
+    return redirect("/dashboard")
+
+@app.route("/log_meal", methods=["POST"])
+def log_meal():
+    if "user_id" not in session:
+        return redirect("/")
+    
+    user_id = session["user_id"]
+    food_names = request.form.getlist("food_names[]")
+    calories_list = request.form.getlist("calories[]")
+    date = request.form.get("date") or __import__('datetime').date.today().isoformat()
+    
+    conn = get_db()
+    c = conn.cursor()
+    try:
+        for name, cal in zip(food_names, calories_list):
+            try:
+                # If cal is 'N/A', try to look it up
+                if cal == 'N/A' or not cal:
+                    nutrition = get_nutrition(name)
+                    final_cal = nutrition.get('calories', 0.0)
+                    if final_cal == 'N/A': final_cal = 0.0
+                else:
+                    final_cal = float(cal)
+                
+                c.execute("INSERT INTO daily_logs (user_id, date, calories, food_name) VALUES (?, ?, ?, ?)", 
+                          (user_id, date, float(final_cal), name))
+            except (ValueError, TypeError):
+                continue
+        conn.commit()
+    except Exception as e:
+        print(f"[DEBUG] DB Error in log_meal: {e}")
     finally:
         conn.close()
     
@@ -625,9 +768,12 @@ def predict_food():
 
     image = request.files["image"]
     
-    # Save image temporarily to read multiple times if needed
-    temp_path = "temp_upload.jpg"
+    # Save image to static folder for display
+    temp_path = os.path.join(UPLOAD_FOLDER, "temp_upload.jpg")
     image.save(temp_path)
+    
+    # Relative path for template
+    display_path = "temp_upload.jpg"
     
     # 1. Multi-Food Detection using YOLO
     with open(temp_path, "rb") as f:
@@ -680,22 +826,27 @@ def predict_food():
         print(f"DEBUG: YOLO found nothing. Falling back to {FOOD_RECOGNITION_API}...")
         
         with open(temp_path, "rb") as f:
-            if FOOD_RECOGNITION_API == "clarifai":
-                label, conf = predict_clarifai(f)
-            elif FOOD_RECOGNITION_API == "logmeal":
-                label, conf = predict_logmeal(f)
-                if label == "Unauthorized":
-                    print("DEBUG: LogMeal unauthorized, falling back to Clarifai...")
-                    f.seek(0)
-                    label, conf = predict_clarifai(f)
-            elif FOOD_RECOGNITION_API == "ensemble":
-                # Use the whole image for ensemble
-                img = Image.open(temp_path).convert("RGB")
-                img_array = np.array(img)
-                label, conf = predict_ensemble(img_array)
-            else:
-                # Default fallback
-                label, conf = predict_clarifai(f)
+            # 1. Try Ensemble first
+            img = Image.open(temp_path).convert("RGB")
+            img_array = np.array(img)
+            label, conf = predict_ensemble(img_array)
+            
+             # 2. Fallback to Gemini if ensemble is not confident or specified
+            if conf < 0.5 or FOOD_RECOGNITION_API == "gemini":
+                print(f"DEBUG: Ensemble low confidence ({conf}) or Gemini forced. Trying Gemini/API...")
+                f.seek(0)
+                if FOOD_RECOGNITION_API == "gemini":
+                    label, conf = predict_gemini(f)
+                elif FOOD_RECOGNITION_API == "logmeal":
+                    label, conf = predict_logmeal(f)
+                    if label == "Unauthorized" or label == "Unknown":
+                        f.seek(0)
+                        label, conf = predict_gemini(f)
+                else:
+                    # Final fallback to Gemini
+                    g_label, g_conf = predict_gemini(f)
+                    if g_label != "Unknown":
+                        label, conf = g_label, g_conf
 
         # Final Fallback to ensemble if everything else failed
         if (label == "Unknown" or label == "Unauthorized"):
@@ -704,24 +855,35 @@ def predict_food():
             img_array = np.array(img)
             label, conf = predict_ensemble(img_array)
 
-        nutrition = get_nutrition(label)
-        results.append({
-            "food": label,
-            "confidence": round(conf * 100, 2),
-            "nutrition": nutrition
-        })
-        if nutrition.get('calories') != 'N/A':
-            total_calories = float(nutrition.get('calories', 0))
-        if nutrition.get('protein') != 'N/A':
-            total_protein = float(nutrition.get('protein', 0))
-        if nutrition.get('carbs') != 'N/A':
-            total_carbs = float(nutrition.get('carbs', 0))
-        if nutrition.get('fat') != 'N/A':
-            total_fat = float(nutrition.get('fat', 0))
+        # 3. Support for Multiple Foods from Gemini (e.g. "rice, chicken")
+        food_items = [item.strip() for item in str(label).split(",")] if "," in str(label) else [label]
+        
+        for food_item in food_items:
+            nutrition = get_nutrition(food_item)
+            results.append({
+                "food": food_item,
+                "confidence": round(conf * 100, 2),
+                "nutrition": nutrition
+            })
+            
+            # Aggregate totals
+            try:
+                if nutrition.get('calories') != 'N/A':
+                    total_calories += float(nutrition.get('calories', 0))
+                if nutrition.get('protein') != 'N/A':
+                    total_protein += float(nutrition.get('protein', 0))
+                if nutrition.get('carbs') != 'N/A':
+                    total_carbs += float(nutrition.get('carbs', 0))
+                if nutrition.get('fat') != 'N/A':
+                    total_fat += float(nutrition.get('fat', 0))
+            except:
+                pass
 
     return render_template(
         "result.html",
         results=results,
+        image_path=display_path,
+        timestamp=time.time(),
         total_calories=round(total_calories, 2),
         total_protein=round(total_protein, 2),
         total_carbs=round(total_carbs, 2),
